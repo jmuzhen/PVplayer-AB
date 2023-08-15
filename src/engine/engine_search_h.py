@@ -103,3 +103,4 @@ def clamp(value, min_value, max_value):
 
 # Constants
 VALUE_INFINITE = 999999
+MAX_DEPTH = 64

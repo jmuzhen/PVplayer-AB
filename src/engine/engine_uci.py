@@ -153,7 +153,7 @@ def handle_commands():
             
 
 def start_search(pos, MAX_MOVES, MAX_ITERS, time, nodes, tm):
-    engine_search.search(pos, MAX_MOVES=MAX_MOVES, MAX_ITERS=MAX_ITERS, movetime=time, nodes=nodes, timeman=tm)
+    engine_search.search_main(pos, MAX_MOVES=MAX_MOVES, MAX_ITERS=MAX_ITERS, movetime=time, nodes=nodes, timeman=tm)
     
     
 def uci():
