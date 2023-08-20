@@ -69,6 +69,8 @@ class Value:
         if other.pov is not None and other.pov != self.pov:
             return self.value >= -other.value
         return self.value >= other.value
+    def __neg__(self):
+        return Value(-self.value, self.pov)
     
     # +, -, *, /, //
     def __add__(self, other):

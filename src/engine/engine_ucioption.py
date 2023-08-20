@@ -112,7 +112,7 @@ class Option:
 options = {
     "ENGINE_PATH": Option.String("ENGINE_PATH", "stockfish"),
     "MAX_MOVES": Option.Spin("MAX_MOVES", 5, 1, 100),
-    "Nodes": Option.Spin("Nodes", 100, 0, 1<<24),
+    "Nodes": Option.Spin("Nodes", 1, 0, 1<<24),
     "debug": Option.Check("debug", False),
     
     "Threads": Option.Spin("Threads", 1, 1, 1024),

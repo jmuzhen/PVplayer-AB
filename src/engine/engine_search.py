@@ -33,7 +33,7 @@ def search(pos: chess.Board, depth: int, alpha: Value, beta: Value,
 
     NODES += 1
 
-    if (depth <= 0):
+    if depth <= 0:
         return evaluate(pos, default_nodes)
     
     # Init
@@ -66,6 +66,7 @@ def search(pos: chess.Board, depth: int, alpha: Value, beta: Value,
     
     bestValue = -VALUE_INFINITE
     bestMove = None
+    value = None
 
     # Moves loop
     moveCount = 0
@@ -87,7 +88,7 @@ def search(pos: chess.Board, depth: int, alpha: Value, beta: Value,
             value = search(pos, (depth - 1) // 2, singularBeta-1, singularBeta, False)
             if value < singularBeta:
                 extension = 1
-                if (not PvNode and value <= singularBeta - 20):
+                if not PvNode and value <= singularBeta - 10:
                     extension = 2
 
             if ttValue >= beta:
@@ -113,7 +114,7 @@ def search(pos: chess.Board, depth: int, alpha: Value, beta: Value,
 
         # LMR
         d = clamp(newDepth - r, 1, newDepth+1)
-        value = -search(pos, d, -(alpha+1), -alpha, False)
+        value = -search(pos, d, -Value(alpha+1), -alpha, False)
 
         # TODO: Do a full-depth search when reduced LMR search fails high
 
@@ -127,7 +128,6 @@ def search(pos: chess.Board, depth: int, alpha: Value, beta: Value,
 
         if value > bestValue:
             bestValue = value
-
             if value > alpha:
                 bestMove = move
                 if PvNode and not rootNode:
